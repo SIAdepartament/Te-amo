@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para una persona especial</title>
+    <title>Para alguien muy especial</title>
     <style>
-        /* Configuración del fondo rosa pastel y centrado absoluto */
+        /* Diseño base con el fondo rosa pastel solicitado */
         body {
             margin: 0;
             padding: 20px;
             height: 100vh;
-            background-color: #FFD1DC; /* Rosa pastel */
+            background-color: #FFD1DC; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -20,32 +20,31 @@
             box-sizing: border-box;
         }
 
-        /* Estilo del texto principal */
+        /* Título de la propuesta */
         h1 {
             color: #D147A3;
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
         }
 
-        /* Contenedor de los botones de control */
+        /* Alineación horizontal para los dos corazones */
         .contenedor-botones {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
             width: 100%;
-            max-width: 500px;
-            min-height: 200px;
+            max-width: 600px;
+            min-height: 250px;
         }
 
-        /* Geometría y estilo base del botón corazón */
+        /* Construcción geométrica del botón corazón */
         .boton-corazon {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             background-color: #FF4D6D;
             border: none;
             cursor: pointer;
@@ -54,10 +53,10 @@
             justify-content: center;
             align-items: center;
             transition: transform 0.2s ease, width 0.3s ease, height 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        /* Formación de las curvas superiores del corazón */
+        /* Orejas redondas del corazón mediante CSS nativo */
         .boton-corazon::before,
         .boton-corazon::after {
             content: "";
@@ -78,34 +77,33 @@
             left: 50%;
         }
 
-        /* Estilo del texto dentro del corazón (girado para quedar derecho) */
+        /* Texto interno del botón (enderezado a 45° para romper la rotación) */
         .texto-boton {
             position: relative;
             z-index: 10;
             color: white;
             font-weight: bold;
             font-size: 1.2rem;
-            transform: rotate(45deg); /* Contrarresta la rotación del botón */
+            transform: rotate(45deg); 
             transition: font-size 0.3s ease;
         }
 
-        /* Ajuste específico para el botón SI cuando crezca */
         #btn-si {
             z-index: 5;
         }
 
-        /* Animación suave para el mensaje final de éxito */
+        /* Estilo del texto de confirmación final */
         .mensaje-exito {
             color: #C71585;
             font-size: 1.8rem;
             text-align: center;
             font-weight: bold;
-            max-width: 80%;
-            line-height: 1.4;
-            animation: aparecer 0.5s ease forward;
+            max-width: 85%;
+            line-height: 1.5;
+            animation: suavizar Entrada 0.6s ease forwards;
         }
 
-        @keyframes aparecer {
+        @keyframes suavizarEntrada {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
@@ -125,37 +123,37 @@
     </div>
 
     <script>
-        // Inicialización de variables de escala de hardware
         let escalaSi = 1;
-        let tamanoBase = 80;
+        let tamanoBase = 85;
         let tamanoTexto = 1.2;
 
+        // Función que se activa al presionar el "No"
         function agrandarSi() {
-            // Incremento progresivo del tamaño del botón "SÍ"
-            escalaSi += 0.4;
+            escalaSi += 0.45; // Factor de crecimiento por cada intento
             
-            let nuevoBtnSi = document.getElementById('btn-si');
-            let nuevoTextoSi = document.getElementById('texto-si');
+            let botonSi = document.getElementById('btn-si');
+            let textoSi = document.getElementById('texto-si');
             
-            // Aplicar nuevas dimensiones físicas al contenedor corazón
             let nuevoTamano = tamanoBase * escalaSi;
-            nuevoBtnSi.style.width = nuevoTamano + 'px';
-            nuevoBtnSi.style.height = nuevoTamano + 'px';
             
-            // Escalar el texto interno de manera proporcional
-            nuevoTextoSi.style.fontSize = (tamanoTexto * escalaSi) + 'rem';
+            // Redimensionamiento del hardware gráfico del botón
+            botonSi.style.width = nuevoTamano + 'px';
+            botonSi.style.height = nuevoTamano + 'px';
+            
+            // Ajuste proporcional del texto interior
+            textoSi.style.fontSize = (tamanoTexto * escalaSi) + 'rem';
         }
 
+        // Función que despliega la respuesta final
         function aceptarPropuesta() {
-            // Desmantelar el módulo de botones e inyectar la respuesta final configurada
             let contenedor = document.getElementById('modulo-interactivo');
             let titulo = document.getElementById('titulo');
             
-            // Ocultar el título inicial
+            // Limpieza del lienzo
             titulo.style.display = 'none';
             
-            // Desplegar el mensaje de confirmación en el contenedor principal
-            contenedor.innerHTML = `<p class="mensaje-exito">¡Gracias! Yo también quiero ser tu novio, aunque ya seamos. ❤️</p>`;
+            // Inyección del texto solicitado en la interfaz
+            contenedor.innerHTML = `<p class="mensaje-exito">gracias yo tambien quiero ser tu novio aunque ya seamos ❤️</p>`;
         }
     </script>
 </body>
